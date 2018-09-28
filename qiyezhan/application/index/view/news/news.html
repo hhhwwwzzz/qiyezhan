@@ -1,0 +1,39 @@
+{include file="public/head" /}
+<!--banner begin-->
+<div id="about-ban">
+    <img src="__css__/images/ban01.jpg" />
+</div>
+<!--banner end-->
+<!--main begin-->
+<div id="main"> 
+
+    <div class="classbar">
+        <h2><i>01</i><span>新闻中心</span></h2>
+        <ul class="level">
+            <li><a href="#" class="current">公司新闻</a></li>
+            <li><a href="#">企业动态</a></li>
+            <li><a href="#">产品新闻</a></li>
+        </ul>
+    </div>
+    
+    <div class="column1 sidebar1"> 
+        <div class="th">
+            <h2><i></i><span class="zhong-da">新闻中心</span><span class="en-xiao">NEWS</span><div class="clear"></div></h2>
+            <div class="current-position">您现在的位置：<a href="#">首页</a> - 新闻中心</div>
+        </div>
+        <ul class="list5">
+            {volist name='content' id='list'}
+            <li>
+                <div class="title"><a href="details.html?id={$list.id}">{$list.name}</a></div>
+                <div class="time">[{$list.time}]</div>
+            </li>
+            {/volist}
+        </ul>
+        
+    </div>
+
+</div>
+<!--main end-->
+{include file="public/foot" /}
+</body>
+</html>

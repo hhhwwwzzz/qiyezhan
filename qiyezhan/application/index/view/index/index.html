@@ -1,0 +1,170 @@
+{include file="public/head" /}
+<!--header end-->
+<!--banner begin-->
+<div id="banner">
+    <div class="swiper-container">
+        <div class="swiper-scrollbar"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-wrapper">
+            {volist name="content" id='list'}
+            {volist id='vo' name='imagepath'}{if condition='$list.id eq $vo.image_id'}<div class="swiper-slide"><img src="__STATIC__/upload/{$vo.image_path}" /></div>{/if}{/volist}
+            {/volist}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color:#000;
+            margin: 0;
+            padding: 0;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 300px;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    </style>
+    <script src="__js__/js/swiper.min.js"></script>
+</div>
+<!--<div class="banner bannerwap">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="__css__/images/banner1.jpg" /></div>
+        </div>
+        <!-- Add Pagination -->
+     <!--   <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<!--banner end-->
+<!--main begin-->
+<div id="main">
+    {volist id='list' name='image'}
+    <div class="homeA1">
+        {volist id='vo' name='picture'}{if condition='$list.id eq $vo.image_id'}<div class="pic"><a href="#"><img src="__STATIC__/upload/{$vo.image_path}" /></a></div>{/if}{/volist}
+        <div class="th"><h2><a href="#">{$list.name}</a></h2><a href="#" class="more">+more </a><div class="clear"></div></div>
+        <p>{$list.abstract}</p>
+    </div>
+    {/volist}
+        <div class="clear"></div>
+
+</div>
+<!--main end-->
+<!--footer begin-->
+{include file="public/foot" /}
+<script>
+    /* ========
+    Debugger plugin, simple demo plugin to console.log some of callbacks
+    ======== */
+    var myPlugin = {
+        name: 'debugger',
+        params: {
+            debugger: false,
+        },
+        on: {
+            init: function () {
+                if (!this.params.debugger) return;
+                console.log('init');
+            },
+            click: function (e) {
+                if (!this.params.debugger) return;
+                console.log('click');
+            },
+            tap: function (e) {
+                if (!this.params.debugger) return;
+                console.log('tap');
+            },
+            doubleTap: function (e) {
+                if (!this.params.debugger) return;
+                console.log('doubleTap');
+            },
+            sliderMove: function (e) {
+                if (!this.params.debugger) return;
+                console.log('sliderMove');
+            },
+            slideChange: function () {
+                if (!this.params.debugger) return;
+                console.log('slideChange', this.previousIndex, '->', this.activeIndex);
+            },
+            slideChangeTransitionStart: function () {
+                if (!this.params.debugger) return;
+                console.log('slideChangeTransitionStart');
+            },
+            slideChangeTransitionEnd: function () {
+                if (!this.params.debugger) return;
+                console.log('slideChangeTransitionEnd');
+            },
+            transitionStart: function () {
+                if (!this.params.debugger) return;
+                console.log('transitionStart');
+            },
+            transitionEnd: function () {
+                if (!this.params.debugger) return;
+                console.log('transitionEnd');
+            },
+            fromEdge: function () {
+                if (!this.params.debugger) return;
+                console.log('fromEdge');
+            },
+            reachBeginning: function () {
+                if (!this.params.debugger) return;
+                console.log('reachBeginning');
+            },
+            reachEnd: function () {
+                if (!this.params.debugger) return;
+                console.log('reachEnd');
+            },
+        },
+    };
+</script>
+
+<script>
+    // Install Plugin To Swiper
+    Swiper.use(myPlugin);
+
+    // Init Swiper
+    var swiper = new Swiper('.swiper-container', {
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        autoplay: {
+            delay: 3000,//1秒切换一次
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        // Enable debugger
+        debugger: true,
+    });
+</script>
+</body>
+</html>

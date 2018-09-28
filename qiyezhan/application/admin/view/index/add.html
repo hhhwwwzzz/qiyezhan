@@ -1,0 +1,144 @@
+<!--_meta 作为公共模版分离出去-->
+{include file="public/_meta" /}
+<!--/meta 作为公共模版分离出去-->
+
+<title>新增图片</title>
+<link href="__css__/css/webuploader.css" rel="stylesheet" type="text/css" />
+<link href="__css__/admin/image-upload/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="page-container">
+	<form class="form form-horizontal" id="form-article-add"  method="post" action="{:url('Index/save')}">
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片标题：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="input_text" name="name">
+			</div>
+		</div>
+	<!--	<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">简略标题：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="2" name="">
+			</div>
+		</div>-->
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>服务分类栏目：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+				<select name="project_id" class="select" id="select">
+					<option value="">全部栏目</option>
+					{volist name='project' id='vo'}
+					<option value="{$vo.id}">{$vo.name}</option>
+					{/volist}
+				</select>
+				</span>
+			</div>
+		</div>
+			<!--		<option value="0">全部栏目</option>
+					<option value="1">产品服务</option>
+					<option value="2">成功案例</option>->
+				</select>
+				</span>
+			</div>
+		</div>
+		<!--	<label class="form-label col-xs-4 col-sm-2">排序值：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="0" placeholder="" id="3" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">允许评论：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="check-box">
+					<input type="checkbox" id="checkbox-1">
+					<label for="checkbox-1">&nbsp;</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">图片作者：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="0" placeholder="" id="4" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">图片来源：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="0" placeholder="" id="5" name="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">关键词：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="0" placeholder="" id="6" name="">
+			</div>
+		</div>-->
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
+			<div  id="wrapper">
+				<div id="container">
+					<div id="uploader">
+						<div class="queueList">
+							<div id="dndArea" class="placeholder">
+								<div id="filePicker"></div>
+								<p>或将照片拖到这里，单次最多可选300张</p>
+							</div>
+						</div>
+						<div class="statusBar" style="display:none;">
+							<div class="progress">
+								<span class="text">0%</span>
+								<span class="percentage"></span>
+							</div><div class="info"></div>
+							<div class="btns">
+								<div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<small id="state" class="form-label col-xs-4 col-sm-2" style="color: #F7B824;font-size: 16px;"></small>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="btn btn-primary radius"  type="button" onclick="validate()"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
+			<!--	<button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>-->
+				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+
+<!--_footer 作为公共模版分离出去-->
+{include file="public/_footer" /}
+<script type="text/javascript" src="__js__/admin/image-upload/upload.js"></script>
+<script type="text/javascript" src="__js__/admin/webuploader.js"></script>
+<!--/_footer /作为公共模版分离出去-->
+<script type="text/javascript">
+	var SCOPE={
+        'image_upload' :'{:url('admin/image/upload')}',
+	}
+	function validate() {
+        var input_text = document.getElementById('input_text').value;
+        var select = document.getElementById('select').value;
+        if (input_text == '') {
+            document.getElementById('state').innerHTML = '图片标题未填写';
+        }else if (select == '') {
+            document.getElementById('state').innerHTML = '服务分类栏目未填写';
+        }
+        else {
+            document.getElementById('state').innerHTML = ''
+            document.getElementById('form-article-add').submit();
+        }
+    }
+	//
+</script>
+<!--请在下方写此页面业务相关的脚本-->
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{include file="public/head" /}
+<!--header end-->
+<!--banner begin-->
+<div id="about-ban">
+    <img src="__css__/images/ban01.jpg" />
+</div>
+<!--banner end-->
+<!--main begin-->
+<div id="main"> 
+
+    <div class="classbar">
+        <h2><i>01</i><span>关于摩迪</span></h2>
+        <ul class="level">
+            <li><a href="#" class="current">关于我们</a></li>
+            <li><a href="#">企业大事记</a></li>
+            <li><a href="#">企业文化</a></li>
+            <li><a href="#">企业荣誉</a></li>
+            <li><a href="#">领导关怀	</a></li>
+            <li><a href="#">员工风采</a></li>
+        </ul>
+    </div>
+    
+    <div class="column1 sidebar1">
+        <div class="th">
+            <h2><i></i><span class="zhong-da">公司简介</span><span class="en-xiao">COMPANY</span><div class="clear"></div></h2>
+            <div class="current-position">您现在的位置：<a href="#">首页</a> - 公司简介</div>
+        </div>
+        {volist name="content" id='list'}
+        <div class="con">
+            {volist id='vo' name='imagepath'}{if condition='$list.id eq $vo.image_id'}<div class="pic"><img src="__STATIC__/upload/{$vo.image_path}" /></div>{/if}{/volist}
+            <div class="text">
+                <p>{$list.article|raw}</p>
+            </div>
+            {/volist}
+
+    </div>
+
+</div>
+<!--main end-->
+<!--footer begin-->
+{include file="public/foot" /}
+</body>
+</html>
